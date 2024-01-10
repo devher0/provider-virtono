@@ -27,7 +27,75 @@ import (
 
 // VirtualMachineParameters are the configurable fields of a VirtualMachine.
 type VirtualMachineParameters struct {
-	ConfigurableField string `json:"configurableField"`
+	// The virtualization to be specified relevant to which the VPS will be created.
+	Virtualization string `json:"virtualization"`
+	// The server group where the VPS will be created and assigned.
+	ServerGroupId *int64 `json:"serverGroupId,omitempty"`
+	// The password for the root user / administrator of the VPS.
+	RootPassword string `json:"rootPassword"`
+	// Hostname.
+	Hostname string `json:"hostname"`
+	// The allowed disk space for the VPS.
+	DiskSpace int64 `json:"diskSpace"`
+	// The amount of RAM which the VPS will always have.
+	RAM int64 `json:"ram"`
+	// The maximum amount of RAM that the VPS can use.
+	BurstableRAM *int64 `json:"burstableRAM,omitempty"`
+	// Swap RAM.
+	SwapRAM *int64 `json:"swapRAM,omitempty"`
+	// Monthly bandwidth limit of the VPS.
+	Bandwidth int64 `json:"bandwidth"`
+	// The user ID under whom the vps will be created.
+	UserId int64 `json:"userId"`
+	// The CPU weight that has been assigned to the user.
+	CPU *int64 `json:"cpu,omitempty"`
+	// The CPU share in % that will be assigned to the VPS.
+	CPUPercent *int64 `json:"cpuPercent,omitempty"`
+	// Number of CPU cores that will be used by the VPS.
+	CPUCores int64 `json:"cpuCores"`
+	// Number of IPv4 addresses that will be assigned to the VPS.
+	IPv4 *int64 `json:"numIpv4,omitempty"`
+	// 	Number of internal IP addresses that will be assigned to the VPS.
+	IPInternal *int64 `json:"numInternalIps,omitempty"`
+	// Number of IPv6 addresses that will be assigned to the VPS.
+	IPv6 *int64 `json:"numIpv6,omitempty"`
+	// Number of IPv6 subnets that will be assigned to the VPS.
+	Ipv6Subnet *int64 `json:"numIpv6Subnets,omitempty"`
+	// Indicates if the VNC should be set of this VPS.
+	EnableVNC *bool `json:"enableVNC,omitempty"`
+	// Optional VNC password or automatically generated if VNC is enabled.
+	VNCPassword *string `json:"vncPassword,omitempty"`
+	// Used for Xen HVM. This sets the shadow memory for the VPS.
+	ShadowMemory *int64 `json:"shadowMemory,omitempty"`
+	// Create VPS using ISO present on the server.
+	ISO *string `json:"iso,omitempty"`
+	// Sets the boot order in the VPS.
+	BootOrder *int64 `json:"bootOrder,omitempty"`
+	// Indicates if `tuntap` should be enabled. Note: For OpenVZ only.
+	EnableTuntap *int64 `json:"enableTuntap,omitempty"`
+	// If set then IO priority for the vps will be enabled. Note: For OpenVZ only.
+	EnableIOPriority *int64 `json:"enableIOPriority,omitempty"`
+	// Indicates if the VPS should be suspended if the bandwidth limit is exceeded.
+	SuspendIfBandwidthExceeded *bool `json:"suspendIfBandwidthExceeded,omitempty"`
+	// The number of maximum OS re-installations allowed.
+	OsReinstallLimit *int64 `json:"osReinstallLimit,omitempty"`
+	// The OS (operating-system) ID.
+	OSId int64 `json:"osId"`
+	// Media group ID for OS (operating-system) templates.
+	MediaGroupId *string `json:"mediaGroupId,omitempty"`
+	// Virtual network interface type.
+	NIC *string `json:"nic,omitempty"`
+	// Provide one of these ssh_options: add_ssh_keys,
+	// generate_keys, use_ssh_keys, we have provided detailed information about these options below
+	SSHOptions *string `json:"sshOptions,omitempty"`
+	// Public SSH key.
+	SSHPublicKey *string `json:"sshPublicKey,omitempty"`
+	// Private SSH Key.
+	SSHPrivateKey *int64 `json:"sshPrivateKey,omitempty"`
+	// Provide an array of public keys (compulsory if `use_ssh_keys` is passed in `ssh_options`)
+	ExistingKeys *[]string `json:"existingSSHKeys,omitempty"`
+	// BIOS type `seabios` or `uefi`. Default is `seabios`. Note: will be applied only while booting with iso. (KVM ONLY)
+	BIOS *string `json:"bios,omitempty"`
 }
 
 // VirtualMachineObservation are the observable fields of a VirtualMachine.
